@@ -1,0 +1,23 @@
+{
+  "name": "Cream",
+  "version": "0.0.1",
+  "description": "Cash Rules Everything Around Me",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OrganicPanda/Cream.git"
+  },
+  "author": "Steve Thomson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OrganicPanda/Cream/issues"
+  },
+  "homepage": "https://github.com/OrganicPanda/Cream",
+  "dependencies": {
+    "glob": "^4.0.6",
+    "iconv-lite": "^0.4.4",
+  }
+}
