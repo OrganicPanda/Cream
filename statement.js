@@ -1,3 +1,12 @@
+var GBP = function(amount) {
+  amount = String(amount).replace('.', '');
+  this.pence = parseInt(amount, 10);
+}
+
+var parseAmount = function(amount) {
+  return new GBP(amount);
+};
+
 var findSections = function(data) {
   var newLine = '\\r\\n'
     , newLineOrSpace = newLine + '\\s'
@@ -24,7 +33,7 @@ var findSections = function(data) {
       return {
         date: date,
         description: description,
-        amount: amount,
+        amount: parseAmount(amount),
         balance: balance
       };
     } else {
