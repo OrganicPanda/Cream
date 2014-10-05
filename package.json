@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/OrganicPanda/Cream",
   "dependencies": {
+    "ent": "^2.0.0",
     "glob": "^4.0.6",
-    "iconv-lite": "^0.4.4",
+    "iconv-lite": "^0.4.4"
   }
 }
