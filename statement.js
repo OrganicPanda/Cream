@@ -1,4 +1,5 @@
-var ent = require('ent');
+var ent = require('ent')
+  , accounting = require('accounting');
 
 var GBP = function(amount) {
   if (typeof amount == 'string') {
@@ -12,12 +13,15 @@ var GBP = function(amount) {
   }
 };
 
-GBP.prototype.add = function(a, b) {
-  return new GBP(a.pence + b.pence);
+GBP.prototype.add = function(x) {
+  return new GBP(this.pence + x.pence);
+};
+
+GBP.prototype.toString = function() {
+  return accounting.formatMoney(this.pence / 100, "£", 2);
 };
 
 var parseDate = function(str) {
-  // 27/09/2013
   var parse = /(\d{2})\/(\d{2})\/(\d{4})/
     , dateArray = parse.exec(str); 
   
@@ -77,6 +81,9 @@ var categorise = function(transactions) {
   var categories = [
     { name: 'Rent', rules: [
       /REFERENCE STEPHEN RENT/
+    ], transactions: [] },
+    { name: 'Savings', rules: [
+      /REFERENCE Joint Savings/
     ], transactions: [] }
   ];
 
@@ -89,10 +96,19 @@ var categorise = function(transactions) {
   return categories;
 }
 
+var analyse = function(categories) {
+  categories.forEach(function(category) {
+    var sum = category.transactions.reduce(function(total, transaction) {
+      return total.add(transaction.amount);
+    }, new GBP(0));
+
+    console.log('> ', category.name, ': ', sum.toString());
+  });
+}
+
 module.exports = function(data) {
-  var transactions = findTransactions(data);
+  var transactions = findTransactions(data)
+    , categories = categorise(transactions);
 
-  var categories = categorise(transactions);
-
-  console.log('categories', categories);
+  analyse(categories);
 };
