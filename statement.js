@@ -80,10 +80,25 @@ var isCategory = function(transaction, category) {
 var categorise = function(transactions) {
   var categories = [
     { name: 'Rent', rules: [
-      /REFERENCE STEPHEN RENT/
+      /REFERENCE STEPHEN RENT/i
     ], transactions: [] },
     { name: 'Savings', rules: [
-      /REFERENCE Joint Savings/
+      /REFERENCE Joint Savings/i
+    ], transactions: [] },
+    { name: 'Salary', rules: [
+      /SALARY/i
+    ], transactions: [] },
+    { name: 'Cash Withdrawal', rules: [
+      /CASH WITHDRAWAL/i
+    ], transactions: [] },
+    { name: 'Supermarket one-offs', rules: [
+      /CARD PAYMENT TO (SAINSBURYS|CO-OP|TESCO)/i
+    ], transactions: [] },
+    { name: 'Supermarket shopping', rules: [
+      /OCADO/i
+    ], transactions: [] },
+    { name: 'Cycling', rules: [
+      /(EVANS CYCLES|BAKER STREET BIKES|SYDNEY STREET BIKES)/i
     ], transactions: [] }
   ];
 
@@ -102,13 +117,34 @@ var analyse = function(categories) {
       return total.add(transaction.amount);
     }, new GBP(0));
 
-    console.log('> ', category.name, ': ', sum.toString());
+    console.log('>', category.name, ':', sum.toString());
   });
 }
+
+var extractTransactions = function(categories) {
+  return categories.map(function(category) {
+    return category.transactions;
+  }).reduce(function(a, b) {
+    return a.concat(b);
+  });
+};
+
+var leftoverTransactions = function(all, found) {
+  return all.filter(function(item) {
+    return found.indexOf(item) === -1;
+  });
+};
 
 module.exports = function(data) {
   var transactions = findTransactions(data)
     , categories = categorise(transactions);
 
   analyse(categories);
+
+  var found = extractTransactions(categories)
+    , notFound = leftoverTransactions(transactions, found);
+
+  console.log('Total:', transactions.length);
+  console.log('Found:', found.length);
+  console.log('Not Found:', notFound.length);
 };
