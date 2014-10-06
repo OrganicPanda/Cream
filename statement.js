@@ -23,8 +23,8 @@ GBP.prototype.toString = function() {
 
 var parseDate = function(str) {
   var parse = /(\d{2})\/(\d{2})\/(\d{4})/
-    , dateArray = parse.exec(str); 
-  
+    , dateArray = parse.exec(str);
+
   return dateObject = new Date(
     (+dateArray[3]),
     (+dateArray[2]) - 1, // Careful, month starts at 0!
@@ -37,9 +37,9 @@ var findTransactions = function(data) {
     , newLineOrSpace = newLine + '\\s'
     , value = '\\s([^' + newLine + ']+)'
     , valueAndNewLine = value + '[' + newLineOrSpace + ']+'
-    , structure = 'Date:' + valueAndNewLine + 
-                  'Description:' + valueAndNewLine + 
-                  'Amount:' + valueAndNewLine + 
+    , structure = 'Date:' + valueAndNewLine +
+                  'Description:' + valueAndNewLine +
+                  'Amount:' + valueAndNewLine +
                   'Balance:' + value
     , pattern = new RegExp(structure)
     , patterng = new RegExp(structure, 'g');
@@ -92,13 +92,51 @@ var categorise = function(transactions) {
       /CASH WITHDRAWAL/i
     ], transactions: [] },
     { name: 'Supermarket one-offs', rules: [
-      /CARD PAYMENT TO (SAINSBURYS|CO-OP|TESCO)/i
+      /CARD PAYMENT TO (SAINSBURYS|CO-OP|TESCO|ASDA|MORRISON)/i
     ], transactions: [] },
     { name: 'Supermarket shopping', rules: [
       /OCADO/i
     ], transactions: [] },
     { name: 'Cycling', rules: [
-      /(EVANS CYCLES|BAKER STREET BIKES|SYDNEY STREET BIKES)/i
+      /(EVANS CYCLES|BAKER STREET BIKES|SYDNEY STREET BIKES|Wiggle)/i
+    ], transactions: [] },
+    { name: 'Utilities', rules: [
+      /(EDF ENERGY|SOUTHERN WATER)/i
+    ], transactions: [] },
+    { name: 'Broadband/Phone/Mobile', rules: [
+      /(SKY DIGITAL|BT GROUP|TELEFONICA UK|O2 UK|H3G|THREE-BRIGHTON|WWW.THREE.CO.UK)/i
+    ], transactions: [] },
+    { name: 'Entertainment (Apps/Music/Film)', rules: [
+      /(APPLE ITUNES|SPOTIFY|lovefilm|netflix)/i
+    ], transactions: [] },
+    { name: 'Transport', rules: [
+      /(SOUTHERN RAIL|GTR WEB RAIL|SNCF|SCOTRAIL)/i
+    ], transactions: [] },
+    { name: 'Bank Charges', rules: [
+      /(OVERDRAFT|NON-STERLING PURCHASE FEE|HANDLING CHARGE)/i
+    ], transactions: [] },
+    { name: 'Hosting', rules: [
+      /(Amazon Web Services|VOOSERVERS|IWANTMYNAME|NAMECHEAP)/i
+    ], transactions: [] },
+    { name: 'Clothes', rules: [
+      /(ROLLERSNAKE|GAP|DEBENHAMS|SPENCER)/i
+    ], transactions: [] },
+    { name: 'Insurance', rules: [
+      /(PIN FINANCE|ALLCLEAR TRAVEL|TRAVEL ADMINISTRATION|C I S HOME|INSUREANDGO)/i
+    ], transactions: [] },
+    { name: 'Kaz', rules: [
+      /(KAZ CURRENT|FROM K Thomson)/i
+    ], transactions: [] },
+    { name: 'Gym/Fitness', rules: [
+      /(FREEDOM LEISURE|PHYSIO)/i
+    ], transactions: [] },
+
+    // These should go last
+    { name: 'Misc Paypal', rules: [
+      /(PAYPAL)/i
+    ], transactions: [] },
+    { name: 'Misc Amazon', rules: [
+      /(amazon)/i
     ], transactions: [] }
   ];
 
