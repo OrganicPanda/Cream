@@ -187,7 +187,7 @@ var analyse = function(categories) {
   categories.forEach(function(category) {
     var total = sum(category.transactions);
 
-    console.log('>', category.name, ':', total.toString());
+    console.log(category.name + '\t' + total.toString());
   });
 }
 
