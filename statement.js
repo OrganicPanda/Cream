@@ -1,3 +1,5 @@
+require('array.prototype.find');
+
 var ent = require('ent')
   , accounting = require('accounting');
 
@@ -74,6 +76,12 @@ var findTransactions = function(data) {
 var isCategory = function(transaction, category) {
   return category.rules.some(function(rule) {
     return transaction.description.match(rule);
+  });
+};
+
+var findCategory = function(transaction, categories) {
+  return categories.find(function(category) {
+    return isCategory(transaction, category);
   });
 };
 
@@ -158,10 +166,12 @@ var categorise = function(transactions) {
     ], transactions: [] }
   ];
 
-  categories.forEach(function(category) {
-    category.transactions = transactions.filter(function(transaction) {
-      return isCategory(transaction, category);
-    });
+  transactions.forEach(function(transaction) {
+    var category = findCategory(transaction, categories);
+
+    if (category) {
+      category.transactions.push(transaction);
+    }
   });
 
   return categories;
