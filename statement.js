@@ -92,13 +92,13 @@ var categorise = function(transactions) {
       /CASH WITHDRAWAL/i
     ], transactions: [] },
     { name: 'Supermarket one-offs', rules: [
-      /CARD PAYMENT TO (SAINSBURYS|CO-OP|TESCO|ASDA|MORRISON)/i
+      /(CARD PAYMENT TO SAINSBURY|CO-OP|TESCO|ASDA|MORRISON|LONDIS|WH SMITH)/i
     ], transactions: [] },
     { name: 'Supermarket shopping', rules: [
       /OCADO/i
     ], transactions: [] },
     { name: 'Cycling', rules: [
-      /(EVANS CYCLES|BAKER STREET BIKES|SYDNEY STREET BIKES|Wiggle)/i
+      /(EVANS CYCLES|BAKER STREET BIKES|SYDNEY STREET BIKES|Wiggle|CYCLING|CYCLE)/i
     ], transactions: [] },
     { name: 'Utilities', rules: [
       /(EDF ENERGY|SOUTHERN WATER)/i
@@ -107,10 +107,10 @@ var categorise = function(transactions) {
       /(SKY DIGITAL|BT GROUP|TELEFONICA UK|O2 UK|H3G|THREE-BRIGHTON|WWW.THREE.CO.UK)/i
     ], transactions: [] },
     { name: 'Entertainment (Apps/Music/Film)', rules: [
-      /(APPLE ITUNES|SPOTIFY|lovefilm|netflix)/i
+      /(APPLE ITUNES|SPOTIFY|lovefilm|netflix|CINEMA|Cineworld)/i
     ], transactions: [] },
     { name: 'Transport', rules: [
-      /(SOUTHERN RAIL|GTR WEB RAIL|SNCF|SCOTRAIL)/i
+      /(RAIL|SNCF|NATIONALEXPRESS|EUROSTAR)/i
     ], transactions: [] },
     { name: 'Bank Charges', rules: [
       /(OVERDRAFT|NON-STERLING PURCHASE FEE|HANDLING CHARGE)/i
@@ -119,16 +119,34 @@ var categorise = function(transactions) {
       /(Amazon Web Services|VOOSERVERS|IWANTMYNAME|NAMECHEAP)/i
     ], transactions: [] },
     { name: 'Clothes', rules: [
-      /(ROLLERSNAKE|GAP|DEBENHAMS|SPENCER)/i
+      /(ROLLERSNAKE|GAP|DEBENHAMS|SPENCER|H&M|SPORTSDIRECT|Adidas|ZARA|TK MAXX)/i
     ], transactions: [] },
     { name: 'Insurance', rules: [
-      /(PIN FINANCE|ALLCLEAR TRAVEL|TRAVEL ADMINISTRATION|C I S HOME|INSUREANDGO)/i
+      /(PIN FINANCE|ALLCLEAR TRAVEL|TRAVEL ADMINISTRATION|C I S HOME|INSUREANDGO|INSURANCE)/i
     ], transactions: [] },
     { name: 'Kaz', rules: [
       /(KAZ CURRENT|FROM K Thomson)/i
     ], transactions: [] },
-    { name: 'Gym/Fitness', rules: [
-      /(FREEDOM LEISURE|PHYSIO)/i
+    { name: 'Gym/Fitness/Health', rules: [
+      /(FREEDOM LEISURE|PHYSIO|PHARMACY|SWEATSHOP|BOOTS)/i
+    ], transactions: [] },
+    { name: 'Food/Pub', rules: [
+      /(STAND UP|YEOMAN|SNOWDROP|TAVERN| INN|GREAT EASTERN|ALCAMPO|FOOD|BAKERY|CAFE|GOURMET|STARBUCK|RESTAURANT|BURRITO)/i
+    ], transactions: [] },
+    { name: 'Days Out', rules: [
+      /(MUSEUM|clearleft|GALLERY|NATIONAL TRUST)/i
+    ], transactions: [] },
+    { name: 'Holidays', rules: [
+      /(AIRBNB|HOTEL)/i
+    ], transactions: [] },
+    { name: 'Electronics', rules: [
+      /(APPLE STORE|MAPLIN)/i
+    ], transactions: [] },
+    { name: 'Home', rules: [
+      /(ROBERT DYAS|TINKERS HARDWARE)/i
+    ], transactions: [] },
+    { name: 'Charity', rules: [
+      /(VIRGIN MONEY GIVING|CHARITY)/i
     ], transactions: [] },
 
     // These should go last
@@ -149,13 +167,17 @@ var categorise = function(transactions) {
   return categories;
 }
 
+var sum = function(transactions) {
+  return transactions.reduce(function(total, transaction) {
+    return total.add(transaction.amount);
+  }, new GBP(0));
+};
+
 var analyse = function(categories) {
   categories.forEach(function(category) {
-    var sum = category.transactions.reduce(function(total, transaction) {
-      return total.add(transaction.amount);
-    }, new GBP(0));
+    var total = sum(category.transactions);
 
-    console.log('>', category.name, ':', sum.toString());
+    console.log('>', category.name, ':', total.toString());
   });
 }
 
@@ -182,7 +204,11 @@ module.exports = function(data) {
   var found = extractTransactions(categories)
     , notFound = leftoverTransactions(transactions, found);
 
-  console.log('Total:', transactions.length);
+  console.log(
+    'Total:', transactions.length,
+    '(', sum(transactions).toString(), ')');
   console.log('Found:', found.length);
-  console.log('Not Found:', notFound.length);
+  console.log(
+    'Not Found:', notFound.length,
+    '(', sum(notFound).toString(), ')');
 };
