@@ -1,10 +1,17 @@
-<h2>Chat</h2>
+<h2>Transactions</h2>
 
 <form>
-  <input placeholder="Message..." ng-model="newMessage">
-  <button type="submit" ng-click="addMessage()">send</button>
+  <input placeholder="Date..." ng-model="newTransaction.date">
+  <input placeholder="Message..." ng-model="newTransaction.message">
+  <input placeholder="Amount..." ng-model="newTransaction.amount">
+  <input placeholder="Balance..." ng-model="newTransaction.balance">
+
+  <button type="submit" ng-click="addTransaction()">Add</button>
 </form>
 
-<ul id="messages" ng-show="messages.length">
-  <li ng-repeat="message in messages | reverse">{{ message.text }}</li>
+<ul id="transactions" ng-show="transactions.length">
+  <li ng-repeat="transaction in transactions | reverse">
+    {{ transaction.date }} - {{ transaction.message }} -
+    {{ transaction.amount }} - {{ transaction.balance }}
+  </li>
 </ul>

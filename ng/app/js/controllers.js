@@ -5,17 +5,17 @@ angular.module('myApp.controllers', ['firebase.utils', 'simpleLogin'])
   })
 
   .controller('ChatCtrl', function($scope, $firebase, query) {
-    var messages = $firebase(query('messages').limit(10));
+    var transactions = $firebase(query('transactions').limit(10));
 
-    $scope.messages = messages.$asArray();
-    $scope.newMessage = null;
+    $scope.transactions = transactions.$asArray();
+    $scope.newTransaction = {};
 
-    $scope.addMessage = function() {
-      if ($scope.newMessage) {
-        $scope.messages.$add({ text: $scope.newMessage });
+    $scope.addTransaction = function() {
+      if ($scope.newTransaction) {
+        $scope.transactions.$add($scope.newTransaction);
       }
 
-      $scope.newMessage = null;
+      $scope.newTransaction = {};
     };
   })
 
