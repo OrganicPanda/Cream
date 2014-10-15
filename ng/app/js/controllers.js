@@ -1,22 +1,25 @@
-'use strict';
-
-/* Controllers */
-
 angular.module('myApp.controllers', ['firebase.utils', 'simpleLogin'])
-  .controller('HomeCtrl', ['$scope', 'fbutil', 'user', 'FBURL', function($scope, fbutil, user, FBURL) {
+
+  .controller('HomeCtrl', function($scope, user) {
     $scope.user = user;
-  }])
+  })
 
-  .controller('ChatCtrl', ['$scope', 'messageList', function($scope, messageList) {
-    $scope.messages = messageList;
-    $scope.addMessage = function(newMessage) {
-      if( newMessage ) {
-        $scope.messages.$add({text: newMessage});
+  .controller('ChatCtrl', function($scope, $firebase, query) {
+    var messages = $firebase(query('messages').limit(10));
+
+    $scope.messages = messages.$asArray();
+    $scope.newMessage = null;
+
+    $scope.addMessage = function() {
+      if ($scope.newMessage) {
+        $scope.messages.$add({ text: $scope.newMessage });
       }
-    };
-  }])
 
-  .controller('LoginCtrl', ['$scope', 'simpleLogin', '$location', function($scope, simpleLogin, $location) {
+      $scope.newMessage = null;
+    };
+  })
+
+  .controller('LoginCtrl', function($scope, simpleLogin, $location) {
     $scope.twitter = function() {
       $scope.err = null;
       return simpleLogin.twitter()
@@ -30,28 +33,18 @@ angular.module('myApp.controllers', ['firebase.utils', 'simpleLogin'])
     function errMessage(err) {
       return angular.isObject(err) && err.code? err.code : err + '';
     }
-  }])
+  })
 
-  .controller('AccountCtrl', ['$scope', 'simpleLogin', 'fbutil', 'user', '$location',
-    function($scope, simpleLogin, fbutil, user, $location) {
-      // create a 3-way binding with the user profile object in Firebase
-      var profile = fbutil.syncObject(['users', user.uid]);
-      profile.$bindTo($scope, 'profile');
+  .controller('AccountCtrl', function($scope, simpleLogin, $firebase, query, user, $location) {
+    var profile = $firebase(query('users').child(user.uid)).$asObject();
 
-      // expose logout function to scope
-      $scope.logout = function() {
-        profile.$destroy();
-        simpleLogin.logout();
-        $location.path('/login');
-      };
+    // create a 3-way binding with the user profile object in Firebase
+    profile.$bindTo($scope, 'profile');
 
-      $scope.clear = resetMessages;
-
-      function resetMessages() {
-        $scope.err = null;
-        $scope.msg = null;
-        $scope.emailerr = null;
-        $scope.emailmsg = null;
-      }
-    }
-  ]);
+    // expose logout function to scope
+    $scope.logout = function() {
+      profile.$destroy();
+      simpleLogin.logout();
+      $location.path('/login');
+    };
+  });
