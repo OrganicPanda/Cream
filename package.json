@@ -19,6 +19,7 @@
   "dependencies": {
     "accounting": "^0.4.1",
     "array.prototype.find": "^1.0.0",
+    "detect-character-encoding": "^0.1.0",
     "ent": "^2.0.0",
     "glob": "^4.0.6",
     "iconv-lite": "^0.4.4"
