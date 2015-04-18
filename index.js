@@ -15,7 +15,8 @@ glob('import/*.txt', function(err, files) {
     fs.readFile(file, charset.encoding, function(err, data) {
       if (err) throw err;
 
-      statement(data);
+      console.log('No statement module found!');
+      // statement(data);
     });
   });
 });

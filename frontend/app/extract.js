@@ -6,8 +6,8 @@ export default function(file) {
       resolve(e.target.result);
     };
 
-    reader.onabort = reader.onerror = function(e) {
-      reject(Error("Couldn't read file"));
+    reader.onabort = reader.onerror = function() {
+      reject(Error('Couldn\'t read file'));
     };
 
     reader.readAsText(file, 'ISO-8859-1');

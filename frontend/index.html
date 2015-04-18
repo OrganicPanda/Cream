@@ -4,12 +4,29 @@
     <title>Statements</title>
 
     <script src="jspm_packages/system.js"></script>
+    <script src="jspm_packages/npm/babel@4.7.16/browser-polyfill.js"></script>
     <script src="config.js"></script>
     <script>
       System.import('app/main');
     </script>
   </head>
   <body>
+    <style>
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        padding: 1em;
+      }
+
+      textarea {
+        min-height: 10em;
+      }
+    </style>
+
     <h1>Statements</h1>
 
     <h2>Input</h2>
@@ -19,6 +36,18 @@
     <h2>Output</h2>
 
     <textarea></textarea>
+
+    <h2>Statement</h2>
+
+    <textarea class="statement"></textarea>
+
+    <h2>CSV</h2>
+
+    <textarea class="csv"></textarea>
+
+    <h2>Categories</h2>
+
+    <textarea class="categories"></textarea>
 
     <h2>Status</h2>
 
