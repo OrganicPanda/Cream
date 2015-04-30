@@ -29,5 +29,6 @@ bower_components
 .lock-wscript
 
 import/*
+app/vendor
 
 .DS_Store
