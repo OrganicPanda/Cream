@@ -19,6 +19,8 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.1.11",
     "core-js": "npm:core-js@0.8.4",
     "fetch": "npm:whatwg-fetch@0.7.0",
+    "guid": "npm:guid@0.0.12",
+    "localforage": "npm:localforage@1.2.2",
     "react": "npm:react@0.13.2",
     "github:jspm/nodelibs-buffer@0.1.0": {
       "buffer": "npm:buffer@3.2.1"
@@ -42,6 +44,9 @@ System.config({
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "module": "github:jspm/nodelibs-module@0.1.0",
       "path": "github:jspm/nodelibs-path@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:asap@1.0.0": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:buffer@3.2.1": {
@@ -78,8 +83,16 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.1",
       "source-map": "npm:source-map@0.1.31"
     },
+    "npm:localforage@1.2.2": {
+      "path": "github:jspm/nodelibs-path@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.1",
+      "promise": "npm:promise@5.0.0"
+    },
     "npm:path-browserify@0.0.0": {
       "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:promise@5.0.0": {
+      "asap": "npm:asap@1.0.0"
     },
     "npm:react@0.13.2": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",

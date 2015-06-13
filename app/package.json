@@ -17,6 +17,8 @@
     },
     "dependencies": {
       "fetch": "npm:whatwg-fetch@^0.7.0",
+      "guid": "npm:guid@^0.0.12",
+      "localforage": "npm:localforage@^1.2.2",
       "react": "npm:react@^0.13.2"
     },
     "devDependencies": {

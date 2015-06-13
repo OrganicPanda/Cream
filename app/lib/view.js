@@ -4,6 +4,9 @@ import { el, $, Component } from './react-utils';
 
 import extract from './extract';
 import santander from './santander';
+import Transactions from './model/Transactions';
+
+import { Analysis } from './components/Analysis';
 
 export class Statements extends Component {
   constructor(props) {
@@ -17,21 +20,26 @@ export class Statements extends Component {
   }
 
   loadTransactions() {
-    return this.setState({ transactions: [] });
-  }
-
-  handleStatementsSubmit(transactions) {
-    this.setState({ transactions });
+    return Transactions
+      .get()
+      .then(() => {
+        this.setState({ transactions: Transactions.models });
+      })
   }
 
   render() {
     return el('div', { className: 'statements' },
-      el('h1', null, 'Transactions'),
+      el('h1', null, 'C.R.E.A.M'),
+      el('h2', null, 'Transactions'),
+      StatementUploadForm.create({
+        onStatementsSubmit: this.loadTransactions.bind(this)
+      }),
       TransactionList.create({
         transactions: this.state.transactions
       }),
-      StatementUploadForm.create({
-        onStatementsSubmit: this.handleStatementsSubmit.bind(this)
+      el('h2', null, 'Analysis'),
+      Analysis.create({
+        transactions: this.state.transactions
       })
     );
   }
@@ -41,6 +49,7 @@ export class TransactionList extends Component {
   render() {
     var nodes = this.props.transactions.map(transaction => {
       return el(Transaction, {
+        key: transaction.id,
         date: transaction.date,
         description: transaction.description,
         amount: transaction.amount,
@@ -59,8 +68,12 @@ export class StatementUploadForm extends Component {
     Promise
       .all(files.map(extract))
       .then(extracted => santander(extracted.join('\r\n')))
+      .then(items => items.map(item => Transactions.create(item)))
       .then(transactions => {
-        this.props.onStatementsSubmit(transactions);
+        console.log('yo', transactions);
+        Transactions.set(transactions);
+
+        this.props.onStatementsSubmit();
       });
   }
 

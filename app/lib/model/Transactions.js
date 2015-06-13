@@ -7,5 +7,5 @@ class Transactions extends BaseCollection {
   }
 }
 
-export default Transactions;
+export default new Transactions();
 

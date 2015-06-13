@@ -1,8 +1,10 @@
+import guid from 'guid';
 import persistence from './persistence';
 
 class BaseModel {
   constructor(props) {
     this.props = this.defaults;
+    this.id = guid.raw();
     this.props = props;
   }
 

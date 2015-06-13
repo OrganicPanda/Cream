@@ -8,7 +8,11 @@
       *, *::before, *::after {
         box-sizing: border-box;
       }
+    </style>
 
+    <link rel="stylesheet" href="http://framework.hogg.io/dist/core/styling/styling.min.css"/>
+
+    <style>
       body {
         display: flex;
         flex-direction: column;
@@ -17,6 +21,12 @@
 
       textarea {
         min-height: 10em;
+      }
+
+      .transaction-list {
+        max-height: 30vh;
+        overflow: auto;
+        border: 1px solid black;
       }
     </style>
   </head>

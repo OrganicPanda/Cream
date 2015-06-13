@@ -1,3 +1,5 @@
+import GBP from './GBP';
+
 var sum = function(transactions) {
   return transactions.reduce(function(total, transaction) {
     return total.add(transaction.amount);
