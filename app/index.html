@@ -10,15 +10,10 @@
       }
     </style>
 
-    <link rel="stylesheet" href="http://framework.hogg.io/dist/core/styling/styling.min.css"/>
+    <link rel="stylesheet"
+          href="/vendor/github/HHogg/hg-framework%40master/dist/hg-framework.min.css"/>
 
     <style>
-      body {
-        display: flex;
-        flex-direction: column;
-        padding: 1em;
-      }
-
       textarea {
         min-height: 10em;
       }
@@ -31,7 +26,19 @@
     </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div class="layout-top">
+      <div class="topbar">
+        <div class="grid grid-no-gutters grid-middle grid-supress">
+          <div class="grid-cell">
+            C.R.E.A.M
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layout-main">
+      <div id="app"></div>
+    </div>
 
     <script src="vendor/system.js"></script>
     <script src="config.js"></script>

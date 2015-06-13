@@ -20,6 +20,7 @@ System.config({
     "core-js": "npm:core-js@0.8.4",
     "fetch": "npm:whatwg-fetch@0.7.0",
     "guid": "npm:guid@0.0.12",
+    "hg-framework": "github:HHogg/hg-framework@master",
     "localforage": "npm:localforage@1.2.2",
     "react": "npm:react@0.13.2",
     "github:jspm/nodelibs-buffer@0.1.0": {

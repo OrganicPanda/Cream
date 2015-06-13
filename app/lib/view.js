@@ -29,7 +29,6 @@ export class Statements extends Component {
 
   render() {
     return el('div', { className: 'statements' },
-      el('h1', null, 'C.R.E.A.M'),
       el('h2', null, 'Transactions'),
       StatementUploadForm.create({
         onStatementsSubmit: this.loadTransactions.bind(this)
