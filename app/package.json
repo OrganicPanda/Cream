@@ -5,7 +5,7 @@
   "author": "Steve Thomson <organicpanda@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "serve",
+    "start": "serve -p 3030",
     "postinstall": "jspm install"
   },
   "dependencies": {

@@ -1,4 +1,5 @@
 import 'core-js/shim';
+import 'fetch';
 import React from 'react';
 import { Statements } from './view';
 

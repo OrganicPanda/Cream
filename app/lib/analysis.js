@@ -27,6 +27,9 @@ export default function(categories) {
   return categories.map(function(category) {
     var total = sum(category.transactions);
 
-    return category.name + '\t' + total.toString();
+    return {
+      description: category.name,
+      amount: total
+    };
   });
 }
