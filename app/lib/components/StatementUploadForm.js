@@ -35,10 +35,8 @@ export class StatementUploadForm extends Component {
   render() {
     return Panel.create({
       header: 'Upload'
-    }, [
-      el('form', { className: 'statement-upload' },
-        el('input', { type: 'file', ref: 'statements', multiple: '' })
-      )
-    ]);
+    }, el('form', { className: 'statement-upload' },
+      el('input', { type: 'file', ref: 'statements', multiple: '' })
+    ));
   }
 }

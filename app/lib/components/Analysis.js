@@ -12,14 +12,13 @@ export class Analysis extends Component {
     var nodes = results.map(result => {
       return Card.create({
         amount: result.amount.toString(),
-        description: result.description
+        description: result.description,
+        key: result.amount.toString() + result.description
       }, result);
     });
 
     return Panel.create({
       header: 'Analysis'
-    }, [
-      el('div', { className: 'analysis' }, Grid.create({}, nodes))
-    ]);
+    }, el('div', { className: 'analysis' }, Grid.create({}, nodes)));
   }
 }

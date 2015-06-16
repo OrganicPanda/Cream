@@ -16,8 +16,6 @@ export class TransactionList extends Component {
 
     return Panel.create({
       header: 'Transactions'
-    }, [
-      el('div', { className: 'transaction-list' }, nodes)
-    ]);
+    }, el('div', { className: 'transaction-list' }, nodes));
   }
 }
