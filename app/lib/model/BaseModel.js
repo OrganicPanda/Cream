@@ -5,7 +5,7 @@ class BaseModel {
   constructor(props) {
     this.props = this.defaults;
     this.id = guid.raw();
-    this.props = props;
+    if (props) this.fromJSON(props);
   }
 
   get defaults() {
@@ -15,6 +15,12 @@ class BaseModel {
   set props(props) {
     Object.keys(props)
       .forEach(key => this[key] = props[key]);
+  }
+
+  fromJSON(json) {
+    this.props = json;
+
+    return this;
   }
 
   save() {

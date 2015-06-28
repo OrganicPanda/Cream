@@ -23,9 +23,25 @@
         overflow: auto;
       }
 
+      .transaction {
+        display: flex;
+        align-items: center;
+      }
+
+      .transaction > * {
+        flex-shrink: 1;
+        margin-left: 0.4em;
+      }
+
+      .transaction > .label {
+        flex-shrink: 0;
+      }
+
+      .transaction > :first-child {
+        margin-left: 0em;
+      }
+
       .analysis .grid-cell {
-        -webkit-flex: 0 0 auto;
-        -ms-flex: 0 0 auto;
         flex: 0 0 auto;
       }
     </style>

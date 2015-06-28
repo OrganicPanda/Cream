@@ -2,22 +2,21 @@ import { el, $, Component } from '../react-utils';
 
 export class Transaction extends Component {
   render() {
+    var transaction = this.props.transaction;
+
     return el('p', { className: 'transaction' },
       el('span', {
         className: 'label label-success transaction-date'
-      }, this.props.date.toString()),
-      ' ', // React LOL
+      }, transaction.date.toString()),
       el('span', {
         className: 'transaction-description'
-      }, this.props.description),
-      ' ',
+      }, transaction.description),
       el('span', {
         className: 'label label-success transaction-amount'
-      }, this.props.amount.pence),
-      ' ',
+      }, transaction.amount.toString()),
       el('span', {
         className: 'label label-success transaction-balance'
-      }, this.props.balance.pence)
+      }, transaction.balance.toString())
     );
   }
 }
