@@ -10,7 +10,7 @@ export class Statements extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { transactions: [] };
+    this.state = { transactions: new Transactions() };
   }
 
   componentDidMount() {
@@ -20,8 +20,8 @@ export class Statements extends Component {
   loadTransactions() {
     return Transactions
       .get()
-      .then(() => {
-        this.setState({ transactions: Transactions.models });
+      .then(transactions => {
+        this.setState({ transactions: transactions });
       })
   }
 

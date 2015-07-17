@@ -16,9 +16,10 @@ export class StatementUploadForm extends Component {
       .then(items => items.map(item => Transactions.create(item)))
       .then(transactions => {
         console.log('yo', transactions);
-        Transactions.set(transactions);
-
-        this.props.onStatementsSubmit();
+        return Transactions.set(transactions);
+      })
+      .then(transactions => {
+        return this.props.onStatementsSubmit(transactions);
       });
   }
 

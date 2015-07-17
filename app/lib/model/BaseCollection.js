@@ -9,7 +9,8 @@ class BaseCollection {
     return persistence
       .getList(this.model.name)
       .then(models => models.map(model => new this.model(model)))
-      .then(models => this.models = models);
+      .then(models => this.models = models)
+      .then(() => this);
   }
 
   set(models) {
@@ -26,8 +27,12 @@ class BaseCollection {
     return new (this)().get();
   }
 
+  static set(models) {
+    return new (this)().set(models);
+  }
+
   static create(obj) {
-    return new this.model(obj);
+    return new (this)().create(obj);
   }
 }
 

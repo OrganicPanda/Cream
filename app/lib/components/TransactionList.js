@@ -4,7 +4,8 @@ import { el, $, Component } from '../react-utils';
 
 export class TransactionList extends Component {
   render() {
-    var nodes = this.props.transactions.map(transaction => {
+    var filtered = this.props.transactions.filter();
+    var nodes = filtered.models.map(transaction => {
       return Transaction.create({
         key: transaction.id,
         transaction: transaction
@@ -12,7 +13,7 @@ export class TransactionList extends Component {
     });
 
     return Panel.create({
-      header: `Transactions (${ this.props.transactions.length })`
+      header: `Transactions (${ filtered.models.length })`
     }, el('div', { className: 'transaction-list' }, nodes));
   }
 }
