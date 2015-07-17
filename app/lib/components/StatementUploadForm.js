@@ -15,7 +15,6 @@ export class StatementUploadForm extends Component {
       .then(extracted => santander(extracted.join('\r\n')))
       .then(items => items.map(item => Transactions.create(item)))
       .then(transactions => {
-        console.log('yo', transactions);
         return Transactions.set(transactions);
       })
       .then(transactions => {

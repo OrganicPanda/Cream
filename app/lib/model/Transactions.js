@@ -7,7 +7,7 @@ class Transactions extends BaseCollection {
   }
 
   filter() {
-    return new Transactions(this.models.slice(0, 10));
+    return new Transactions(this.models.slice(0, 5));
   }
 }
 
