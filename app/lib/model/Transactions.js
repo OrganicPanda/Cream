@@ -7,6 +7,8 @@ class Transactions extends BaseCollection {
   }
 
   filter(filterToApply) {
+    if (!filterToApply) return new Transactions(this.models);
+
     return new Transactions(filterToApply.apply(this.models));
   }
 }

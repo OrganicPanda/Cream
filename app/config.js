@@ -22,6 +22,7 @@ System.config({
     "guid": "npm:guid@0.0.12",
     "hg-framework": "github:HHogg/hg-framework@master",
     "localforage": "npm:localforage@1.2.2",
+    "moment": "npm:moment@2.10.3",
     "react": "npm:react@0.13.2",
     "github:jspm/nodelibs-buffer@0.1.0": {
       "buffer": "npm:buffer@3.2.1"
@@ -88,6 +89,9 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1",
       "promise": "npm:promise@5.0.0"
+    },
+    "npm:moment@2.10.3": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:path-browserify@0.0.0": {
       "process": "github:jspm/nodelibs-process@0.1.1"

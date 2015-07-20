@@ -5,7 +5,7 @@
   "author": "Steve Thomson <organicpanda@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "serve -p 3030",
+    "start": "browser-sync start --files \"**/*.*\" --server --no-open --no-ui --no-inject-changes --no-notify",
     "postinstall": "jspm install"
   },
   "dependencies": {
@@ -20,6 +20,7 @@
       "guid": "npm:guid@^0.0.12",
       "hg-framework": "github:HHogg/hg-framework@master",
       "localforage": "npm:localforage@^1.2.2",
+      "moment": "npm:moment@^2.10.3",
       "react": "npm:react@^0.13.2"
     },
     "devDependencies": {
@@ -27,5 +28,8 @@
       "babel-runtime": "npm:babel-runtime@^5.1.11",
       "core-js": "npm:core-js@^0.8.4"
     }
+  },
+  "devDependencies": {
+    "browser-sync": "^2.8.0"
   }
 }
