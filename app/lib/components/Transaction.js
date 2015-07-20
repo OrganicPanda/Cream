@@ -1,13 +1,16 @@
+import moment from 'moment';
 import { el, $, Component } from '../react-utils';
 
 export class Transaction extends Component {
   render() {
-    var transaction = this.props.transaction;
+    var transaction = this.props.transaction
+      , referenceDate = moment.utc()
+      , transactionDate = moment(transaction.date);
 
     return el('p', { className: 'transaction' },
       el('span', {
         className: 'label label-success transaction-date'
-      }, transaction.date.toString()),
+      }, referenceDate.to(transactionDate)),
       el('span', {
         className: 'transaction-description'
       }, transaction.description),

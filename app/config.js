@@ -2,6 +2,7 @@ System.config({
   "baseURL": "/",
   "transpiler": "babel",
   "babelOptions": {
+    "sourceMaps": "inline",
     "optional": [
       "runtime"
     ]

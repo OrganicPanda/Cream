@@ -33,7 +33,6 @@ export class Statements extends Component {
   }
 
   applyFilter(filter) {
-    console.log('apply filter', filter);
     this.setState({
       filteredTransactions: this.state.transactions.filter(filter)
     });
