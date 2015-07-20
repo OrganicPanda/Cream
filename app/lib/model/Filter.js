@@ -7,6 +7,10 @@ class Filter extends BaseModel {
       value: 50
     };
   }
+
+  apply(transactions) {
+    return transactions.slice(0, this.value);
+  }
 }
 
 export default Filter;

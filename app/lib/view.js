@@ -11,7 +11,10 @@ export class Statements extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { transactions: new Transactions() };
+    this.state = {
+      transactions: new Transactions(),
+      filteredTransactions: new Transactions()
+    };
   }
 
   componentDidMount() {
@@ -22,12 +25,18 @@ export class Statements extends Component {
     return Transactions
       .get()
       .then(transactions => {
-        this.setState({ transactions: transactions });
+        this.setState({
+          transactions: transactions,
+          filteredTransactions: transactions // TODO
+        });
       })
   }
 
-  applyFilter() {
-    console.log('apply filter', arguments);
+  applyFilter(filter) {
+    console.log('apply filter', filter);
+    this.setState({
+      filteredTransactions: this.state.transactions.filter(filter)
+    });
   }
 
   render() {
@@ -39,10 +48,10 @@ export class Statements extends Component {
         onFilter: this.applyFilter.bind(this)
       }),
       TransactionList.create({
-        transactions: this.state.transactions
+        transactions: this.state.filteredTransactions
       }),
       Analysis.create({
-        transactions: this.state.transactions
+        transactions: this.state.filteredTransactions
       })
     );
   }
