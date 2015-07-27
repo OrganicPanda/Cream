@@ -2,6 +2,7 @@ import { el, $, Component } from './react-utils';
 
 import Transactions from './model/Transactions';
 
+import { Chart } from './components/Chart';
 import { Analysis } from './components/Analysis';
 import { SelectFilters } from './components/SelectFilters';
 import { TransactionList } from './components/TransactionList';
@@ -47,6 +48,9 @@ export class Statements extends Component {
         onFilter: this.applyFilter.bind(this)
       }),
       TransactionList.create({
+        transactions: this.state.filteredTransactions
+      }),
+      Chart.create({
         transactions: this.state.filteredTransactions
       }),
       Analysis.create({

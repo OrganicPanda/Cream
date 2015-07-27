@@ -7,8 +7,8 @@ import { el, $, Component } from '../react-utils';
 
 export class Analysis extends Component {
   render() {
-    var filtered = this.props.transactions.filter();
-    var results = analyse(categories(filtered.models));
+    var transactions = this.props.transactions
+      , results = analyse(categories(transactions.models));
 
     var nodes = results.map(result => {
       return Card.create({
