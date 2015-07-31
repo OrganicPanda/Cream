@@ -16,10 +16,11 @@ System.config({
 
 System.config({
   "map": {
-    "babel": "npm:babel-core@5.1.11",
-    "babel-runtime": "npm:babel-runtime@5.1.11",
-    "core-js": "npm:core-js@0.8.4",
+    "babel": "npm:babel-core@5.8.19",
+    "babel-runtime": "npm:babel-runtime@5.8.19",
+    "core-js": "npm:core-js@0.9.18",
     "fetch": "npm:whatwg-fetch@0.7.0",
+    "group-by": "npm:group-by@0.0.1",
     "guid": "npm:guid@0.0.12",
     "hg-framework": "github:HHogg/hg-framework@master",
     "localforage": "npm:localforage@1.2.2",
@@ -53,6 +54,9 @@ System.config({
     "npm:asap@1.0.0": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
+    "npm:babel-runtime@5.8.19": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
     "npm:buffer@3.3.1": {
       "base64-js": "npm:base64-js@0.0.8",
       "ieee754": "npm:ieee754@1.1.6",
@@ -66,6 +70,11 @@ System.config({
     "npm:core-js@0.8.4": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
+    "npm:core-js@0.9.18": {
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "process": "github:jspm/nodelibs-process@0.1.1",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.0"
+    },
     "npm:core-util-is@1.0.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
     },
@@ -77,6 +86,9 @@ System.config({
     "npm:esprima-fb@13001.1001.0-dev-harmony-fb": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:group-by@0.0.1": {
+      "to-function": "npm:to-function@2.0.6"
     },
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
@@ -141,6 +153,9 @@ System.config({
     "npm:through@2.3.8": {
       "process": "github:jspm/nodelibs-process@0.1.1",
       "stream": "github:jspm/nodelibs-stream@0.1.0"
+    },
+    "npm:to-function@2.0.6": {
+      "component-props": "npm:component-props@1.1.1"
     },
     "npm:util@0.10.3": {
       "inherits": "npm:inherits@2.0.1",
