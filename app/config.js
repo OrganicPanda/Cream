@@ -16,8 +16,8 @@ System.config({
 
 System.config({
   "map": {
-    "babel": "npm:babel-core@5.8.19",
-    "babel-runtime": "npm:babel-runtime@5.8.19",
+    "babel": "npm:babel-core@5.8.22",
+    "babel-runtime": "npm:babel-runtime@5.8.20",
     "core-js": "npm:core-js@0.9.18",
     "fetch": "npm:whatwg-fetch@0.7.0",
     "group-by": "npm:group-by@0.0.1",
@@ -25,6 +25,7 @@ System.config({
     "hg-framework": "github:HHogg/hg-framework@master",
     "localforage": "npm:localforage@1.2.2",
     "moment": "npm:moment@2.10.3",
+    "numeral": "npm:numeral@1.5.3",
     "react": "npm:react@0.13.3",
     "react-chartjs": "npm:react-chartjs@0.6.0",
     "github:jspm/nodelibs-buffer@0.1.0": {
@@ -55,6 +56,9 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:babel-runtime@5.8.19": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:babel-runtime@5.8.20": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:buffer@3.3.1": {
@@ -108,6 +112,9 @@ System.config({
     },
     "npm:moment@2.10.3": {
       "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:numeral@1.5.3": {
+      "fs": "github:jspm/nodelibs-fs@0.1.2"
     },
     "npm:path-browserify@0.0.0": {
       "process": "github:jspm/nodelibs-process@0.1.1"

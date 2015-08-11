@@ -1,3 +1,4 @@
+import numeral from 'numeral';
 import BaseModel from './BaseModel';
 
 class GBP extends BaseModel {
@@ -5,11 +6,7 @@ class GBP extends BaseModel {
     super();
 
     if (typeof amount == 'string') {
-      if (amount.indexOf('.') > -1) {
-        this.pence = parseInt(amount.replace('.', ''), 10);
-      } else {
-        this.pence = parseInt(amount, 10) * 100;
-      }
+      this.pence = numeral().unformat(amount) * 100;
     } else if (amount !== undefined && amount !== null) {
       this.pence = amount;
     }

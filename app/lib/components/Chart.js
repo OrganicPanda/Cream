@@ -1,5 +1,6 @@
 import Charts from 'react-chartjs';
 import moment from 'moment';
+import numeral from 'numeral';
 
 import GBP from '../model/GBP';
 
@@ -70,12 +71,12 @@ export class Chart extends Component {
         data: {
           labels: monthLabels,
           datasets: [{
-            label: 'Spend',
+            label: 'Total',
             strokeColor: 'hsl(174, 67%, 55%)',
             pointColor: 'hsl(174, 67%, 55%)',
             data: monthSums
           }, {
-            label: 'Average',
+            label: 'Chart Average',
             strokeColor: 'hsl(252, 33%, 62%)',
             pointColor: 'hsl(252, 33%, 62%)',
             data: monthAverages
@@ -98,6 +99,11 @@ export class Chart extends Component {
           pointDotRadius: 2,
           pointDotStrokeWidth: 0,
           scaleLabel: '<%= "£" + value %>',
+          multiTooltipTemplate: function(chartEl) {
+            var value = new GBP(chartEl.value.toString()).toString();
+
+            return `${chartEl.datasetLabel}: ${value}`;
+          }
         }
       })
     );

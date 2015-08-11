@@ -22,12 +22,13 @@
       "hg-framework": "github:HHogg/hg-framework@master",
       "localforage": "npm:localforage@^1.2.2",
       "moment": "npm:moment@^2.10.3",
+      "numeral": "npm:numeral@^1.5.3",
       "react": "npm:react@^0.13.2",
       "react-chartjs": "npm:react-chartjs@^0.6.0"
     },
     "devDependencies": {
-      "babel": "npm:babel-core@^5.1.13",
-      "babel-runtime": "npm:babel-runtime@^5.1.13",
+      "babel": "npm:babel-core@^5.1.11",
+      "babel-runtime": "npm:babel-runtime@^5.1.11",
       "core-js": "npm:core-js@^0.9.4"
     }
   },
