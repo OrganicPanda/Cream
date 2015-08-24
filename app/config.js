@@ -19,6 +19,7 @@ System.config({
     "babel": "npm:babel-core@5.8.22",
     "babel-runtime": "npm:babel-runtime@5.8.20",
     "core-js": "npm:core-js@0.9.18",
+    "d3": "npm:d3@3.5.6",
     "fetch": "npm:whatwg-fetch@0.7.0",
     "group-by": "npm:group-by@0.0.1",
     "guid": "npm:guid@0.0.12",
@@ -26,6 +27,10 @@ System.config({
     "localforage": "npm:localforage@1.2.2",
     "moment": "npm:moment@2.10.3",
     "numeral": "npm:numeral@1.5.3",
+    "plottable": "github:palantir/plottable@1.8.0",
+    "github:palantir/plottable@1.8.0": {
+      "d3": "npm:d3@3.5.6"
+    },
     "react": "npm:react@0.13.3",
     "react-chartjs": "npm:react-chartjs@0.6.0",
     "github:jspm/nodelibs-buffer@0.1.0": {

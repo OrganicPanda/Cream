@@ -29,7 +29,8 @@ export default function(categories) {
 
     return {
       description: category.name,
-      amount: total
+      amount: total,
+      transactions: category.transactions
     };
   });
 }

@@ -16,6 +16,8 @@
       "packages": "vendor"
     },
     "dependencies": {
+      "d3": "npm:d3@^3.5.6",
+      "d3-jsnext": "npm:d3-jsnext@^3.5.5",
       "fetch": "npm:whatwg-fetch@^0.7.0",
       "group-by": "npm:group-by@^0.0.1",
       "guid": "npm:guid@^0.0.12",
@@ -23,6 +25,7 @@
       "localforage": "npm:localforage@^1.2.2",
       "moment": "npm:moment@^2.10.3",
       "numeral": "npm:numeral@^1.5.3",
+      "palantir/plottable.git": "github:palantir/plottable@^1.8.0",
       "react": "npm:react@^0.13.2",
       "react-chartjs": "npm:react-chartjs@^0.6.0"
     },

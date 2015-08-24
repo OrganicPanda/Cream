@@ -1,4 +1,6 @@
-import Charts from 'react-chartjs';
+// import Charts from 'react-chartjs';
+import d3 from 'd3';
+import plottable from 'plottable';
 import moment from 'moment';
 import numeral from 'numeral';
 
@@ -6,6 +8,40 @@ import GBP from '../model/GBP';
 
 import { Panel } from '../hg/Panel';
 import { el, $, Component } from '../react-utils';
+
+console.log('plottable', plottable);
+
+class FooChart extends Component {
+  render() {
+    return el('div', {
+      ref: 'fooChart',
+      style: { height: '250px' }
+    });
+  }
+
+  componentDidMount() {
+    this.drawCharts();
+  }
+
+  componentDidUpdate() {
+    this.drawCharts();
+  }
+
+  drawCharts() {
+    var el = this.refs.fooChart;
+
+    console.log('fooChart', el);
+    // var data = google.visualization.arrayToDataTable(this.props.data);
+    // var options = {
+    //   title: 'ABC',
+    // };
+
+    // var chart = new google.visualization.LineChart(
+    //   document.getElementById(this.props.graphName)
+    // );
+    // chart.draw(data, options);
+  }
+}
 
 export class Chart extends Component {
   render() {
@@ -51,9 +87,6 @@ export class Chart extends Component {
         .pence / 100;
     });
 
-    console.log('in', monthIn);
-    console.log('out', monthOut);
-
     var monthAverages = monthSums
       .slice()
       .reverse()
@@ -67,45 +100,51 @@ export class Chart extends Component {
 
     return Panel.create(
       { header: 'Chart' },
-      el(Charts.Line, {
-        data: {
-          labels: monthLabels,
-          datasets: [{
-            label: 'Total',
-            strokeColor: 'hsl(174, 67%, 55%)',
-            pointColor: 'hsl(174, 67%, 55%)',
-            data: monthSums
-          }, {
-            label: 'Chart Average',
-            strokeColor: 'hsl(252, 33%, 62%)',
-            pointColor: 'hsl(252, 33%, 62%)',
-            data: monthAverages
-          }, {
-            label: 'In',
-            strokeColor: 'hsl(146, 60%, 56%)',
-            pointColor: 'hsl(146, 60%, 56%)',
-            data: monthIn
-          }, {
-            label: 'Out',
-            strokeColor: 'hsl(204, 92%, 70%)',
-            pointColor: 'hsl(204, 92%, 70%)',
-            data: monthOut
-          }]
-        },
-        options: {
-          responsive: true,
-          datasetFill: false,
-          bezierCurveTension: 0.4,
-          pointDotRadius: 2,
-          pointDotStrokeWidth: 0,
-          scaleLabel: '<%= "£" + value %>',
-          multiTooltipTemplate: function(chartEl) {
-            var value = new GBP(chartEl.value.toString()).toString();
-
-            return `${chartEl.datasetLabel}: ${value}`;
-          }
-        }
-      })
+      'Yo',
+      FooChart.create()
     );
+
+    // return Panel.create(
+    //   { header: 'Chart' },
+    //   el(Charts.Line, {
+    //     data: {
+    //       labels: monthLabels,
+    //       datasets: [{
+    //         label: 'Total',
+    //         strokeColor: 'hsl(174, 67%, 55%)',
+    //         pointColor: 'hsl(174, 67%, 55%)',
+    //         data: monthSums
+    //       }, {
+    //         label: 'Chart Average',
+    //         strokeColor: 'hsl(252, 33%, 62%)',
+    //         pointColor: 'hsl(252, 33%, 62%)',
+    //         data: monthAverages
+    //       }, {
+    //         label: 'In',
+    //         strokeColor: 'hsl(146, 60%, 56%)',
+    //         pointColor: 'hsl(146, 60%, 56%)',
+    //         data: monthIn
+    //       }, {
+    //         label: 'Out',
+    //         strokeColor: 'hsl(204, 92%, 70%)',
+    //         pointColor: 'hsl(204, 92%, 70%)',
+    //         data: monthOut
+    //       }]
+    //     },
+    //     options: {
+    //       responsive: true,
+    //       datasetFill: false,
+    //       bezierCurveTension: 0.4,
+    //       pointDotRadius: 2,
+    //       pointDotStrokeWidth: 0,
+    //       scaleLabel: '<%= "£" + value %>',
+    //       multiTooltipTemplate: function(chartEl) {
+    //         var value = new GBP(chartEl.value.toString()).toString();
+
+    //         return `${chartEl.datasetLabel}: ${value}`;
+    //       }
+    //     }
+    //   })
+    // );
   }
 }
